@@ -5,7 +5,7 @@ const contactInfo = [
   { icon: Mail, label: 'Email', value: 'abhinav.anand85@gmail.com' },
   { icon: Phone, label: 'Phone', value: '+91 9472463185' },
   { icon: MapPin, label: 'Location', value: 'Patna, India' },
-  { icon: Clock, label: 'Availability', value: 'Open to new projects' },
+  { icon: Clock, label: 'Availability', value: 'Open to new recruitment' },
 ];
 
 export default function Contact() {
