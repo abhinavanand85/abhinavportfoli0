@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, CheckCircle2, MessageCircle } from 'lucide-react';
 
 const contactInfo = [
   { icon: Mail, label: 'Email', value: 'abhinav.anand85@gmail.com' },
@@ -13,6 +13,23 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    const form = e.currentTarget as HTMLFormElement;
+    const data = new FormData(form);
+    const message = [
+      'Hello Abhinav, I would like to make an inquiry.',
+      '',
+      `Name: ${data.get('name')}`,
+      `Email: ${data.get('email')}`,
+      `Company: ${data.get('company') || 'Not provided'}`,
+      `Service: ${data.get('service')}`,
+      `Message: ${data.get('message')}`,
+    ].join('\n');
+
+    window.open(
+      `https://wa.me/919472463185?text=${encodeURIComponent(message)}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
     setSubmitted(true);
   };
 
@@ -74,15 +91,15 @@ export default function Contact() {
                 <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500 text-white">
                   <CheckCircle2 className="h-8 w-8" />
                 </span>
-                <h3 className="heading-display mt-5 text-2xl font-bold text-slate-900">Message sent!</h3>
+                <h3 className="heading-display mt-5 text-2xl font-bold text-slate-900">WhatsApp inquiry opened!</h3>
                 <p className="mt-2 text-slate-500 max-w-sm">
-                  Thank you for reaching out. I'll get back to you within 24 hours with next steps.
+                  Complete your inquiry in WhatsApp. I'll get back to you within 24 hours with next steps.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
                   className="btn-outline mt-6"
                 >
-                  Send another message
+                  Send another inquiry
                 </button>
               </div>
             ) : (
@@ -95,6 +112,7 @@ export default function Contact() {
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Name</label>
                     <input
                       type="text"
+                      name="name"
                       required
                       placeholder="Your name"
                       className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
@@ -104,6 +122,7 @@ export default function Contact() {
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">Email Address</label>
                     <input
                       type="email"
+                      name="email"
                       required
                       placeholder="you@company.com"
                       className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
@@ -115,6 +134,7 @@ export default function Contact() {
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">Company</label>
                     <input
                       type="text"
+                      name="company"
                       placeholder="Company name"
                       className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
                     />
@@ -122,6 +142,7 @@ export default function Contact() {
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1.5">Service</label>
                     <select
+                      name="service"
                       required
                       className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 bg-white"
                     >
@@ -138,6 +159,7 @@ export default function Contact() {
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1.5">Message</label>
                   <textarea
+                    name="message"
                     required
                     rows={4}
                     placeholder="Tell me about your goals..."
@@ -145,7 +167,7 @@ export default function Contact() {
                   />
                 </div>
                 <button type="submit" className="btn-primary w-full sm:w-auto">
-                  Send Message <Send className="h-4 w-4" />
+                  WhatsApp Inquiry <MessageCircle className="h-4 w-4" />
                 </button>
               </form>
             )}
