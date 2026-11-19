@@ -107,8 +107,8 @@ export default function Hero() {
           <div className="relative animate-fade-up [animation-delay:200ms]">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/10 border border-white/40">
               <img
-                src="/assets/pasted-image.png"
-                alt="AI-powered marketing analytics"
+                src="/assets/chatbot-customer-service.jpeg"
+                alt="Portrait of Abhinav Anand"
                 className="w-full h-[420px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-950/40 via-transparent to-transparent" />
